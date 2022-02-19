@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:quickly/quickly.dart';
 
 class SearchBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 3, horizontal: 15),
+      margin: FxPadding.pxy(v: 3, h: 15),
       width: MediaQuery.of(context).size.width * .3,
       child: TextFormField(
         decoration: InputDecoration(
           border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(5.0),
+            borderRadius: FxRadius.r5,
           ),
           hintText: 'Search...',
-          contentPadding: EdgeInsets.symmetric(vertical: 2, horizontal: 20),
+          contentPadding: FxPadding.pxy(h: 20, v: 2),
         ),
       ),
     );

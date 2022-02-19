@@ -1,12 +1,13 @@
 import 'package:dev_clone/models/Post.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quickly/quickly.dart';
 
 class Posts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20),
+      padding: FxPadding.pt20,
       child: ListView.builder(
         itemCount: posts.length,
         shrinkWrap: true,
@@ -18,53 +19,32 @@ class Posts extends StatelessWidget {
               color: Colors.black12,
             ),
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+              padding: FxPadding.pxy(h: 10, v: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    width: 80,
-                    child: CircleAvatar(
-                      child: Image.network(posts[index].userAvatar),
-                    ),
-                  ),
+                  CircleAvatar(
+                    child: Image.network(posts[index].userAvatar),
+                  ).w(80),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(
-                          posts[index].userName,
-                          style: TextStyle(fontWeight: FontWeight.w600),
-                        ),
-                        Text(
-                          posts[index].date,
-                          style: TextStyle(),
-                        ),
-                        Text(
-                          posts[index].title,
-                          style: TextStyle(
-                            fontSize: 24,
-                            fontWeight: FontWeight.w800,
-                          ),
-                        ),
+                        Text(posts[index].userName).bold,
+                        Text(posts[index].date).sm,
+                        SizedBox(height: 8),
+                        Text(posts[index].title).extraBold.h5,
                         Container(
                           height: 20,
-                          margin: EdgeInsets.symmetric(vertical: 10),
+                          margin: FxPadding.py12,
                           child: ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.horizontal,
                             itemBuilder: (context, index1) {
-                              return Padding(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 5),
-                                child: InkWell(
-                                  onTap: () {},
-                                  child: Text(
-                                    "#" + posts[index].tags[index1],
-                                  ),
-                                ),
-                              );
+                              return Text("#" + posts[index].tags[index1])
+                                  .px4
+                                  .onTap(() {});
                             },
                             itemCount: posts[index].tags.length,
                           ),
@@ -106,9 +86,9 @@ class Posts extends StatelessWidget {
                                   hoverColor: Color(0xffA9A9A9),
                                   color: Color(0xffC0C0C0),
                                   shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(3),
+                                    borderRadius: FxRadius.r5,
                                   ),
-                                  padding: EdgeInsets.all(10),
+                                  padding: FxPadding.p12,
                                   child: Text("Save"),
                                   onPressed: () {},
                                 ),

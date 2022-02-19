@@ -1,12 +1,13 @@
 import 'package:dev_clone/constant.dart';
 import 'package:dev_clone/widgets/widgets.dart';
 import 'package:flutter/material.dart';
+import 'package:quickly/quickly.dart';
 
 class Navbar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 5, horizontal: 20),
+      padding: FxPadding.pxy(v: 5, h: 20),
       height: 55,
       decoration: BoxDecoration(
         color: Colors.white,
@@ -29,27 +30,15 @@ class Navbar extends StatelessWidget {
           ),
           Row(
             children: [
-              Text(
-                'Log In',
-                style: TextStyle(
-                    color: kPrimaryColor,
-                    fontSize: 16,
-                    fontWeight: FontWeight.w500),
-              ),
+              Text('Log In').medium.body1.color(kPrimaryColor),
               SizedBox(width: 20),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                padding: FxPadding.pxy(v: 10, h: 20),
                 decoration: BoxDecoration(
                   color: kPrimaryColor,
-                  borderRadius: BorderRadius.circular(5),
+                  borderRadius: FxRadius.r5,
                 ),
-                child: Text(
-                  'Create Account',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500),
-                ),
+                child: Text('Create Account').medium.body1.color(Colors.white),
               ),
             ],
           ),

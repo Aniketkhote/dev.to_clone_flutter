@@ -1,5 +1,4 @@
 import 'package:dev_clone/screens/screens.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {

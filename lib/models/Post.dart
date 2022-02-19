@@ -7,14 +7,15 @@ class Post {
   final int reactions;
   final int comments;
 
-  Post(
-      {this.userName,
-      this.userAvatar,
-      this.title,
-      this.date,
-      this.tags,
-      this.reactions,
-      this.comments});
+  Post({
+    required this.userName,
+    required this.userAvatar,
+    required this.title,
+    required this.date,
+    required this.tags,
+    required this.reactions,
+    required this.comments,
+  });
 }
 
 List posts = [

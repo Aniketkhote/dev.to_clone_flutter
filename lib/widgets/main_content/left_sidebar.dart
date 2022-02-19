@@ -1,6 +1,7 @@
 import 'package:dev_clone/constant.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:quickly/quickly.dart';
 
 class LeftSidebar extends StatelessWidget {
   final List categories = [
@@ -28,90 +29,61 @@ class LeftSidebar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 270,
-      padding: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          //Categories
-          Container(
-            child: ListView.builder(
-              itemCount: 5,
-              shrinkWrap: true,
-              scrollDirection: Axis.vertical,
-              itemBuilder: (context, index) {
-                return (index == 0)
-                    ? Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
-                          children: [
-                            FaIcon(
-                              FontAwesomeIcons.handshake,
-                              size: 18,
-                              color: Colors.amber,
-                            ),
-                            SizedBox(width: 8),
-                            Text(
-                              'Sign In/Up',
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w700,
-                              ),
-                            ),
-                          ],
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        //Categories
+        Container(
+          child: ListView.builder(
+            itemCount: 5,
+            shrinkWrap: true,
+            scrollDirection: Axis.vertical,
+            itemBuilder: (context, index) {
+              return (index == 0)
+                  ? Row(
+                      children: [
+                        FaIcon(
+                          FontAwesomeIcons.handshake,
+                          size: 18,
+                          color: Colors.amber,
                         ),
-                      )
-                    : Category(
-                        name: categories[index - 1]['name'],
-                        color: categories[index - 1]['color'],
-                        icon: categories[index - 1]['icon'],
-                      );
-              },
-            ),
+                        SizedBox(width: 8),
+                        Text('Sign In/Up').body1.extraBold,
+                      ],
+                    ).p8
+                  : Category(
+                      name: categories[index - 1]['name'],
+                      color: categories[index - 1]['color'],
+                      icon: categories[index - 1]['icon'],
+                    );
+            },
           ),
-          //More Categories Text
-          Padding(
-            padding: const EdgeInsets.only(left: 35, top: 8),
-            child: Text(
-              'More...',
-              style: TextStyle(
-                  color: Colors.grey[600],
-                  fontSize: 15,
-                  fontWeight: FontWeight.w400),
-            ),
-          ),
-          //Tags
-          Container(
-            height: 350,
-            padding: EdgeInsets.symmetric(vertical: 20),
-            child: Tag(),
-          ),
-          // Sticker
-          Column(
-            children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10),
-                child: Image.asset(
-                  'dev_sticker.png',
-                ),
+        ),
+        //More Categories Text
+        Text('More...').normal.body2.gray600.pOnly(left: 35, top: 8),
+        //Tags
+        Tag().py20.h(350),
+        // Sticker
+        Column(
+          children: [
+            ClipRRect(
+              borderRadius: FxRadius.r10,
+              child: Image.asset(
+                'dev_sticker.png',
               ),
-              Center(
-                child: Text(
-                  'Do you have your sticker pack yet?',
-                  style: TextStyle(
-                    color: kPrimaryColor,
-                    fontSize: 18,
-                    fontWeight: FontWeight.w800,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+            ),
+            SizedBox(height: 8),
+            Center(
+              child: Text('Do you have your sticker pack yet?')
+                  .h6
+                  .extraBold
+                  .color(kPrimaryColor)
+                  .textCenter,
+            ),
+          ],
+        ),
+      ],
+    ).w(270).pxy(h: 30, v: 20);
   }
 }
 
@@ -120,25 +92,16 @@ class Category extends StatelessWidget {
   final Color color;
   final String name;
 
-  const Category({this.icon, this.color, this.name});
+  const Category({required this.icon, required this.color, required this.name});
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Row(
         children: [
-          Icon(
-            icon,
-            size: 18,
-            color: color,
-          ),
+          Icon(icon, size: 18, color: color),
           SizedBox(width: 8),
-          Text(
-            name,
-            style: TextStyle(
-              fontSize: 16,
-            ),
-          ),
+          Text(name).body1,
         ],
       ),
     );
@@ -166,13 +129,7 @@ class Tag extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          'Popular Tags',
-          style: TextStyle(
-            fontSize: 18,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
+        Text('Popular Tags').bold.h6,
         SizedBox(height: 8),
         Expanded(
           child: Scrollbar(
@@ -180,21 +137,7 @@ class Tag extends StatelessWidget {
               itemCount: tags.length,
               scrollDirection: Axis.vertical,
               itemBuilder: (context, index) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: Row(
-                    children: [
-                      Text(
-                        "#",
-                        style: TextStyle(fontSize: 18),
-                      ),
-                      Text(
-                        tags[index],
-                        style: TextStyle(fontSize: 18),
-                      ),
-                    ],
-                  ),
-                );
+                return Text("# ${tags[index]}").h6.py8;
               },
             ),
           ),
